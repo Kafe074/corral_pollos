@@ -24,11 +24,7 @@ export default function Header() {
     <header className={scrolled ? 'scrolled' : ''}>
       <nav className="nav wrap">
         <a className="brand" href="#inicio">
-          {/* LOGO: cuando tengan el logo definitivo, reemplacen este <div className="seal">
-              por un <img src="/logo.png" alt="Corral Don Pedrito" width={46} height={46} /> */}
-          <div className="seal">
-            <span>CDP</span>
-          </div>
+          <img className="seal" src="/image.png" alt="Corral Don Pedrito" width={48} height={48} />
           <div className="brand-name">
             <strong>Corral Don Pedrito</strong>
             <small>Huevos &amp; Pollos de corral</small>

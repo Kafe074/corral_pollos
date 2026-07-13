@@ -23,13 +23,16 @@ export default function Nosotros() {
             que sale de nuestro corral lo entregamos nosotros mismos, sin intermediarios.
           </p>
         </div>
-        <div className="ledger reveal" ref={ledgerRef}>
-          {LEDGER.map(([label, value]) => (
-            <div className="ledger-row" key={label}>
-              <span className="label">{label}</span>
-              <span className="value">{value}</span>
-            </div>
-          ))}
+        <div className="ledger-col reveal" ref={ledgerRef}>
+          <img className="brand-stamp" src="/image.png" alt="Sello Corral Don Pedrito" width={200} height={200} />
+          <div className="ledger">
+            {LEDGER.map(([label, value]) => (
+              <div className="ledger-row" key={label}>
+                <span className="label">{label}</span>
+                <span className="value">{value}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
