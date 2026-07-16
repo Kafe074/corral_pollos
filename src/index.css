@@ -115,7 +115,8 @@ header.scrolled{border-color:var(--line); box-shadow:var(--shadow-nav);}
 .nav-links{display:flex; gap:1.8rem; list-style:none; margin:0; padding:0; font-size:.92rem; font-weight:600;}
 .nav-links a{text-decoration:none; opacity:.82; transition:opacity 160ms var(--ease-out);}
 .nav-links a:hover{opacity:1;}
-@media (max-width:760px){ .nav-links{display:none;} }
+@media (max-width:1020px){ .nav-links{gap:1.1rem; font-size:.88rem;} }
+@media (max-width:860px){ .nav-links{display:none;} }
 @media (max-width:480px){
   .nav{gap:.75rem;}
   .seal{width:38px; height:38px;}
@@ -167,26 +168,27 @@ header.scrolled{border-color:var(--line); box-shadow:var(--shadow-nav);}
   filter:blur(2px); z-index:-1;
 }
 .egg{
-  width:clamp(180px,24vw,290px); aspect-ratio:4/5;
-  border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;
-  background:
-    radial-gradient(ellipse at 32% 26%, rgba(255,255,255,.55), transparent 45%),
-    radial-gradient(circle at 22% 70%, var(--accent-barn) 0 3px, transparent 4px),
-    radial-gradient(circle at 62% 55%, var(--accent-barn) 0 2.4px, transparent 3.4px),
-    radial-gradient(circle at 78% 30%, var(--accent-barn) 0 2px, transparent 3px),
-    radial-gradient(circle at 45% 80%, var(--accent-barn) 0 2.6px, transparent 3.6px),
-    radial-gradient(circle at 30% 45%, var(--accent-barn) 0 1.8px, transparent 2.8px),
-    radial-gradient(circle at 68% 78%, var(--accent-barn) 0 2.2px, transparent 3.2px),
-    radial-gradient(circle at 85% 60%, var(--accent-barn) 0 1.6px, transparent 2.6px),
-    linear-gradient(160deg, #F3E4C0, #E3B778 70%, #D6A05C);
-  background-blend-mode:normal, multiply, multiply, multiply, multiply, multiply, multiply, multiply, normal;
-  box-shadow:0 18px 34px -18px rgba(36,26,18,.4), inset 0 -10px 22px -12px rgba(36,26,18,.25);
-  transform:rotate(-4deg);
+  position:relative;
+  width:clamp(250px,32vw,380px); aspect-ratio:1;
+  transform:rotate(-2deg);
   animation:eggbob 5.5s var(--ease-in-out) infinite;
 }
+.egg img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
+  filter:drop-shadow(0 16px 22px rgba(36,26,18,.28));
+}
+.egg img:nth-child(1){animation:eggswap 14s var(--ease-in-out) infinite;}
+.egg img:nth-child(2){opacity:0; animation:eggswap 14s var(--ease-in-out) infinite; animation-delay:-7s;}
+@keyframes eggswap{
+  0%,42%{opacity:1;}
+  50%,92%{opacity:0;}
+  100%{opacity:1;}
+}
+.egg.is-paused, .egg.is-paused img{animation-play-state:paused;}
+@media (max-width:640px){ .egg{width:min(84vw,340px);} }
 @keyframes eggbob{
-  0%,100%{transform:rotate(-4deg) translateY(0);}
-  50%{transform:rotate(-1.5deg) translateY(-10px);}
+  0%,100%{transform:rotate(-2deg) translateY(0);}
+  50%{transform:rotate(-.5deg) translateY(-10px);}
 }
 
 /* ---- Reveal on scroll ---- */
@@ -267,6 +269,7 @@ header.scrolled{border-color:var(--line); box-shadow:var(--shadow-nav);}
 }
 @media (max-width:760px){ .contact-card{grid-template-columns:1fr;} }
 .contact-card .ledger{border-top:none;}
+.whatsapp-block{display:flex; flex-direction:column; align-items:flex-start; gap:.55rem;}
 .whatsapp-number{font-family:var(--font-display); font-weight:400; font-size:1.5rem; letter-spacing:.01em; text-decoration:none; color:var(--accent-barn);}
 .whatsapp-note{color:var(--ink-soft); font-size:.92rem; max-width:34ch;}
 
@@ -375,7 +378,7 @@ footer{border-top:2px dashed var(--line-strong); padding-block:2.2rem;}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  .egg, .route-dot{animation:none !important;}
+  .egg, .egg img, .route-dot{animation:none !important;}
   .reveal, .stagger > *, .hero-copy > *, .egg-wrap{
     transition-duration:120ms !important; animation-duration:120ms !important;
     transform:none !important;

@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { waHref } from '../config/contact.js';
 
 export default function Hero() {
+  const [eggPaused, setEggPaused] = useState(false);
+
   return (
     <section id="inicio" className="hero">
       <div className="wrap">
@@ -25,7 +28,27 @@ export default function Hero() {
           </div>
         </div>
         <div className="egg-wrap">
-          <div className="egg" role="img" aria-label="Huevo de corral" />
+          <div
+            className={`egg${eggPaused ? ' is-paused' : ''}`}
+            onPointerEnter={(e) => {
+              if (e.pointerType === 'mouse') setEggPaused(true);
+            }}
+            onPointerLeave={(e) => {
+              if (e.pointerType === 'mouse') setEggPaused(false);
+            }}
+            onPointerDown={(e) => {
+              if (e.pointerType !== 'mouse') setEggPaused((p) => !p);
+            }}
+          >
+            <img
+              src="/01.png"
+              alt="Los huevos del Corral Don Pedrito son más saludables: gallinas alimentadas con granos de cebada y verduras frescas"
+            />
+            <img
+              src="/02.png"
+              alt="Huevos frescos de gallinas de corral de semi pastoreo — haz tu pedido al 981673702"
+            />
+          </div>
         </div>
       </div>
     </section>
